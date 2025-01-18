@@ -37,7 +37,7 @@ mysql> desc client_master;
 
 ----+-------+---------+
 14 rows in set (0.00 sec)
-
+PART A Question (1)
 mysql> insert into client_master values('123','niyo pazzo','kigali','kigarama','kon20','5000'),('345','bukuru bea','muhanga','kinyinya','kon30','6000'),('456','mpumure espe','bukavu','cyanika','kon40','7000'),('567','nkubito alex','nyakarambi','kirehe','kon10','8000'),('678','byiza rick','mumbasa','nairobi','kon50','9000');
 Query OK, 5 rows affected (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 0
@@ -54,6 +54,7 @@ mysql> select *from client_master;
 +----------+--------------+------------+----------+-------+---------+
 5 rows in set (0.00 sec)
 
+PART A Question (2)
 
 mysql> select name,bal_due from client_master where bal_due>5000;
 +--------------+---------+
@@ -65,6 +66,8 @@ mysql> select name,bal_due from client_master where bal_due>5000;
 | byiza rick   |    9000 |
 +--------------+---------+
 4 rows in set (0.01 sec)
+
+PART A Question (3)
 
 mysql> update client_master set bal_due='rs.5100'where clientno='c123';
 Query OK, 0 rows affected (0.02 sec)
@@ -84,6 +87,8 @@ mysql> select *from client_master;
 
 mysql> select dal_due as BALANCE from client_master;
 ERROR 1054 (42S22): Unknown column 'dal_due' in 'field list'
+
+PART A Question (5)
 mysql> select bal_due as BALANCE from client_master;
 +---------+
 | BALANCE |
@@ -123,7 +128,7 @@ mysql> desc departments;
 | deptname | varchar(30) | YES  |     | NULL    |                |
 +----------+-------------+------+-----+---------+----------------+
 2 rows in set (0.00 sec)
-
+PART B Question (6) a)
 mysql>  insert into departments values('','Ict'),('','finace'),('','laws'),('','procurement'),('','human_resource');
 Query OK, 5 rows affected, 5 warnings (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 5
@@ -143,7 +148,7 @@ mysql> select*from departments;
 mysql> alter table employees add foreign key(deptid) references departments(deptid);
 Query OK, 0 rows affected (0.04 sec)
 Records: 0  Duplicates: 0  Warnings: 0
-
+PART B Question (6) B)
 mysql>  desc employees;
 +---------+-------------+------+-----+---------+-------+
 | Field   | Type        | Null | Key | Default | Extra |
@@ -154,7 +159,7 @@ mysql>  desc employees;
 | salary  | int         | YES  |     | NULL    |       |
 +---------+-------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
-
+PART B Question (6) a)
 mysql> insert into employees values('001','ndahiro','1','70000'),('002','kalisa','2','35000'),('003','james','3','90000'),('004','gatete','4','60000'),('005','mugabo','5','40000');
 Query OK, 5 rows affected (0.00 sec)
 Records: 5  Duplicates: 0  Warnings: 0
@@ -171,6 +176,8 @@ mysql>  select*from employees;
 +-------+---------+--------+--------+
 5 rows in set (0.00 sec)
 
+
+PART B Question (6) C)
 mysql> select employees.empname,departments.deptname from employees left outer join departments on employees.deptid=departments.deptid;
 +---------+----------------+
 | empname | deptname       |
@@ -182,6 +189,8 @@ mysql> select employees.empname,departments.deptname from employees left outer j
 | mugabo  | human_resource |
 +---------+----------------+
 5 rows in set (0.02 sec)
+
+PART B Question (6) D)
 
 mysql>  select employees.empname,departments.deptname from employees right outer join departments on employees.deptid=departments.deptid;
 +---------+----------------+
@@ -195,6 +204,8 @@ mysql>  select employees.empname,departments.deptname from employees right outer
 +---------+----------------+
 5 rows in set (0.01 sec)
 
+PART B Question (6) E)
+
 mysql>  select *from employees where salary>(select avg(salary) from employees);
 +-------+---------+--------+--------+
 | empid | empname | deptid | salary |
@@ -204,6 +215,8 @@ mysql>  select *from employees where salary>(select avg(salary) from employees);
 |     4 | gatete  |      4 |  60000 |
 +-------+---------+--------+--------+
 3 rows in set (0.02 sec)
+
+PART B Question 7
 
 mysql>  create table students(studentid varchar(5),fullnames varchar(25),gender varchar(6),age int(2),department varchar(30))
     ->  create table students(studentid varchar(5),fullnames varchar(25),gender varchar(6),age int(2),department varchar(30));
@@ -227,6 +240,7 @@ Records: 5  Duplicates: 0  Warnings: 0
 mysql>  delete from students where age<20;
 Query OK, 2 rows affected (0.00 sec)
 
+PART C Question (9)
 mysql> desc employee;
 ERROR 1146 (42S02): Table 'huye.employee' doesn't exist
 mysql> CREATE TABLE Employees (
@@ -290,15 +304,7 @@ mysql>  select*from employee;
 +-------------+------------+-----------+---------+--------------+------------+--------+--------+---------------+------------+---------------+
 3 rows in set (0.00 sec)
 
-mysql>  select employee_id,concat(first_name,' ',last_name) as names,salary as salaries from employee;
-+-------------+---------------+----------+
-| employee_id | names         | salaries |
-+-------------+---------------+----------+
-|           1 | mugabo austin | 48000    |
-|           2 | muhoza ange   | 48000    |
-|           3 | kagabo erise  | 48000    |
-+-------------+---------------+----------+
-3 rows in set (0.00 sec)
+PART C Question (9) a)
 
 mysql>  select employee_id,concat(first_name,' ',last_name) as names,salary as salaries from employee;
 +-------------+---------------+----------+
@@ -310,6 +316,19 @@ mysql>  select employee_id,concat(first_name,' ',last_name) as names,salary as s
 +-------------+---------------+----------+
 3 rows in set (0.00 sec)
 
+PART C Question (9) A)
+
+mysql>  select employee_id,concat(first_name,' ',last_name) as names,salary as salaries from employee;
++-------------+---------------+----------+
+| employee_id | names         | salaries |
++-------------+---------------+----------+
+|           1 | mugabo austin | 48000    |
+|           2 | muhoza ange   | 48000    |
+|           3 | kagabo erise  | 48000    |
++-------------+---------------+----------+
+3 rows in set (0.00 sec)
+
+PART C Question (9) B)
 mysql>  select*from employee where manager_id=100;
 +-------------+------------+-----------+---------+--------------+------------+--------+--------+---------------+------------+---------------+
 | employee_id | first_name | last_name | email   | phone_number | hire_date  | job_id | salary | commision_pct | manager_id | department_id |
@@ -318,6 +337,7 @@ mysql>  select*from employee where manager_id=100;
 |           2 | muhoza     | ange      | muhoza@ | 0788687688   | 2025-01-01 |      1 | 48000  | 1200          |        100 |            70 |
 +-------------+------------+-----------+---------+--------------+------------+--------+--------+---------------+------------+---------------+
 2 rows in set (0.00 sec)
+PART C Question (9) C)
 
 mysql> select first_name,last_name,salary from employee where salary>=4800;
 +------------+-----------+--------+
@@ -329,6 +349,7 @@ mysql> select first_name,last_name,salary from employee where salary>=4800;
 +------------+-----------+--------+
 3 rows in set (0.00 sec)
 
+PART C Question (9) D)
 mysql>  select*from employee where last_name='austin';
 +-------------+------------+-----------+---------+--------------+------------+--------+--------+---------------+------------+---------------+
 | employee_id | first_name | last_name | email   | phone_number | hire_date  | job_id | salary | commision_pct | manager_id | department_id |
@@ -336,7 +357,7 @@ mysql>  select*from employee where last_name='austin';
 |           1 | mugabo     | austin    | emmy@gm | 0788687688   | 2025-01-01 |      1 | 48000  | 1200          |        100 |            60 |
 +-------------+------------+-----------+---------+--------------+------------+--------+--------+---------------+------------+---------------+
 1 row in set (0.00 sec)
-
+PART C Question (9) E)
 mysql> select first_name,last_name from employee where department_id IN(60,70,80);
 +------------+-----------+
 | first_name | last_name |
@@ -360,6 +381,9 @@ mysql> desc sales;
 | DOB         | date        | YES  |     | NULL    |       |
 +-------------+-------------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
+
+PART C question 10) a)
+
 
 mysql> insert into sales values('1','alex mak','muhura','20000','2003-01-15');
 Query OK, 1 row affected (0.00 sec)
@@ -396,15 +420,18 @@ mysql>  select*from sales;
 +----------+------------+--------+-------------+------------+
 5 rows in set (0.00 sec)
 
+PART C question 10) B)
+
 mysql>  select branch,sum(salesamount) as tota_sales from sales group by branch;
 +--------+------------+
-| branch | tota_sales |
+| branch | sales |
 +--------+------------+
 | muhura |     110000 |
 | taba   |      30000 |
 | rango  |      50000 |
 +--------+------------+
 3 rows in set (0.02 sec)
+PART C question 10) C)
 
 mysql>  select branch,avg(salesamount) as sales_average from sales group by branch;
 +--------+---------------+
@@ -416,6 +443,7 @@ mysql>  select branch,avg(salesamount) as sales_average from sales group by bran
 +--------+---------------+
 3 rows in set (0.01 sec)
 
+PART C question 10) D)
 mysql> select sales.sales_no,sales.salesname,DATE_FORMAT(DOB, '%d-%b-%y') as formated_date from sales where MONTH(DOB)=12;
 +----------+-----------+---------------+
 | sales_no | salesname | formated_date |
@@ -425,7 +453,7 @@ mysql> select sales.sales_no,sales.salesname,DATE_FORMAT(DOB, '%d-%b-%y') as for
 |        5 | mugabo    | 02-Dec-02     |
 +----------+-----------+---------------+
 3 rows in set (0.02 sec)
-
+PART C question 10) E)
 mysql>  SELECT salesname, DOB, MONTHNAME(DOB) AS month_name  FROM sales  ORDER BY MONTH(DOB);
 +------------+------------+------------+
 | salesname  | DOB        | month_name |
